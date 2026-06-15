@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SiteButcher — Bulk Website Generator & Multi-Site Management Tool</title>
-<meta name="description" content="SiteButcher is a desktop tool to mass-produce, deploy and manage hundreds of websites from one dashboard. AI content, 39 visual styles, 26 languages, multi-account deploy and Search Console integration — all running locally on your machine.">
+<meta name="description" content="SiteButcher is a desktop tool to mass-produce, deploy and manage hundreds of websites from one dashboard. AI content, 40+ visual styles, any language with RTL support, multi-account deploy and Search Console integration — all running locally on your machine.">
 <meta name="keywords" content="bulk website generator, mass site creation, website automation tool, multi-site management, AI website builder, bulk site deployment, SEO site generator, affiliate site builder">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://sitebutcher.com/">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sitebutcher.com/">
 <meta property="og:title" content="SiteButcher — Bulk Website Generator & Multi-Site Management">
-<meta property="og:description" content="Mass-produce, deploy and manage hundreds of websites from one desktop dashboard. AI content, 39 styles, 26 languages — all local to your machine.">
+<meta property="og:description" content="Mass-produce, deploy and manage hundreds of websites from one desktop dashboard. AI content, 40+ styles, any language — all local to your machine.">
 <meta property="og:site_name" content="SiteButcher">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SiteButcher — Bulk Website Generator & Multi-Site Management">
@@ -31,7 +31,7 @@
   "operatingSystem":"Windows",
   "description":"Desktop tool to mass-produce, deploy and manage hundreds of websites from one dashboard, with AI content generation and Google Search Console integration. Runs locally — user data stays on the user's own machine.",
   "offers":{"@type":"Offer","category":"SaaS"},
-  "featureList":["Bulk website generation","Multi-site management","AI content and image generation","39 visual styles","26 languages with RTL","Multi-account deployment","Google Search Console integration","Live site monitoring","Local-first privacy"]
+  "featureList":["Bulk website generation","Multi-site management","AI content and image generation","40+ visual styles","Any language with RTL support","Multi-account deployment","Google Search Console integration","Live site monitoring","Local-first privacy"]
 }
 </script>
 
@@ -147,7 +147,9 @@
   .machine .row .v{color:var(--accent)}
   .machine .locktag{position:absolute;top:18px;right:18px;font-size:10px;color:var(--accent);border:1px solid var(--accent-dim);border-radius:6px;padding:3px 8px;letter-spacing:.08em}
 
-  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:54px}
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:54px}
+  @media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.feat-grid{grid-template-columns:1fr}}
   .feat{background:var(--bg-raised);padding:28px 26px;transition:background .2s}
   .feat:hover{background:var(--bg-elevated)}
   .feat .fi{width:36px;height:36px;border-radius:9px;background:#0e1f1a;border:1px solid var(--accent-dim);display:grid;place-items:center;color:var(--accent);font-size:16px;margin-bottom:16px}
@@ -176,7 +178,7 @@
 
   .soon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:50px}
   .soon{border:1px solid var(--line-soft);border-radius:12px;background:var(--bg-raised);padding:24px;position:relative;opacity:.92}
-  .soon .pill{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);border-radius:100px;padding:3px 10px;display:inline-block;margin-bottom:14px}
+  .soon .pill{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);background:#0e1f1a;border-radius:100px;padding:4px 11px;display:inline-block;margin-bottom:14px;font-weight:600}
   .soon h4{font-size:16px;font-weight:600;margin-bottom:7px;color:var(--ink-dim)}
   .soon p{font-size:14px;color:var(--ink-faint)}
 
@@ -245,8 +247,8 @@
 
   <div class="trust">
     <div class="wrap trust-grid">
-      <div class="trust-item"><div class="n"><span class="accent">39</span></div><div class="l">visual styles</div></div>
-      <div class="trust-item"><div class="n"><span class="accent">26</span></div><div class="l">languages · RTL ready</div></div>
+      <div class="trust-item"><div class="n"><span class="accent">40+</span></div><div class="l">visual styles · growing</div></div>
+      <div class="trust-item"><div class="n"><span class="accent">Any</span></div><div class="l">language · RTL ready</div></div>
       <div class="trust-item"><div class="n"><span class="accent">248</span></div><div class="l">regions &amp; currencies</div></div>
       <div class="trust-item"><div class="n"><span class="accent">1</span></div><div class="l">dashboard for everything</div></div>
       <div class="trust-item"><div class="n">100%</div><div class="l">local &amp; private</div></div>
@@ -271,8 +273,8 @@
         <div class="stage-card reveal">
           <div class="step-ix">STAGE 02</div>
           <h3>Generate the site</h3>
-          <p>AI writes structured content block by block; image generation produces matching visuals. Pick from 39 visual styles and 26 languages, including full right-to-left support.</p>
-          <div class="tags"><span class="tag">AI content</span><span class="tag">AI images</span><span class="tag">39 styles</span><span class="tag">multi-language</span></div>
+          <p>AI writes structured content block by block; image generation produces matching visuals. Pick from 40+ visual styles and generate in any language, including full right-to-left support.</p>
+          <div class="tags"><span class="tag">AI content</span><span class="tag">AI images</span><span class="tag">40+ styles</span><span class="tag">any language</span></div>
         </div>
         <div class="stage-card reveal">
           <div class="step-ix">STAGE 03</div>
@@ -284,7 +286,7 @@
           <div class="step-ix">STAGE 04</div>
           <h3>Deploy to your servers</h3>
           <p>Publish to infrastructure you own over SSH, with automatic web-server config and HTTPS. Rotate across multiple servers, Cloudflare and registrar accounts.</p>
-          <div class="tags"><span class="tag">SSH deploy</span><span class="tag">auto-HTTPS</span><span class="tag">multi-account</span></div>
+          <div class="tags"><span class="tag">SSH deploy</span><span class="tag">auto-HTTPS</span><span class="tag">multi-account</span><span class="tag">smart outbound links</span></div>
         </div>
         <div class="stage-card reveal">
           <div class="step-ix">STAGE 05</div>
@@ -384,9 +386,8 @@
         <div class="feat reveal"><div class="fi">🖥️</div><h4>Your own servers</h4><p>Add multiple deploy targets, test connections, and watch deployments stream live as sites go out over SSH.</p></div>
         <div class="feat reveal"><div class="fi">🔍</div><h4>Search Console at scale</h4><p>Verify, submit sitemaps and index across every connected Google account, with a unified performance dashboard.</p></div>
         <div class="feat reveal"><div class="fi">📊</div><h4>Live monitoring</h4><p>Uptime, SSL and HTTP checks for every site, with one-click re-checks and Cloudflare status at a glance.</p></div>
-        <div class="feat reveal"><div class="fi">🎨</div><h4>39 visual styles</h4><p>From clean and editorial to bold and neon — each site can look distinct, reducing repetitive footprints across a network.</p></div>
-        <div class="feat reveal"><div class="fi">🌍</div><h4>26 languages, RTL ready</h4><p>Generate localized sites with proper right-to-left handling and a clear primary-language structure per site.</p></div>
-        <div class="feat reveal"><div class="fi">🔗</div><h4>Smart outbound links</h4><p>Configurable handling for your tracking links across the whole site, applied consistently to every call-to-action.</p></div>
+        <div class="feat reveal"><div class="fi">🎨</div><h4>40+ visual styles</h4><p>From clean and editorial to bold and neon — each site can look distinct, reducing repetitive footprints. The style library keeps growing.</p></div>
+        <div class="feat reveal"><div class="fi">🌍</div><h4>Any language, RTL ready</h4><p>Generate localized sites in any language you add, with proper right-to-left handling and a clear primary-language structure per site.</p></div>
       </div>
     </div>
   </section>
