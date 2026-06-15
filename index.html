@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiteButcher — Automated Website Building & Search Console Management</title>
+<meta name="description" content="SiteButcher is a desktop tool that automates building and managing websites at scale, with built-in Google Search Console integration for verification, sitemaps and indexing.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sitebutcher.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sitebutcher.com/">
+<meta property="og:title" content="SiteButcher — Automated Website Building & Search Console Management">
+<meta property="og:description" content="Build and manage websites at scale from one desktop dashboard, with Google Search Console integration.">
+<meta property="og:site_name" content="SiteButcher">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0d10;
+    --bg-raised:#14161b;
+    --ink:#eceef2;
+    --ink-dim:#9aa0ac;
+    --ink-faint:#5d6470;
+    --line:#22252d;
+    --steel:#8b95a5;
+    --edge:#d23b3b;        /* the blade */
+    --edge-soft:#e36a5a;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---- the blade: a hairline that cuts across, the signature ---- */
+  .cut{position:relative;height:1px;background:var(--line);overflow:visible}
+  .cut::before{
+    content:"";position:absolute;left:0;top:-1px;height:3px;width:0;
+    background:linear-gradient(90deg,transparent,var(--edge),transparent);
+    animation:slice 3.2s ease-in-out infinite;
+  }
+  @keyframes slice{
+    0%{width:0;left:0;opacity:0}
+    15%{opacity:1}
+    55%{width:100%;left:0;opacity:.9}
+    70%{opacity:0}
+    100%{width:0;left:100%;opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){.cut::before{animation:none}}
+
+  /* ---- header ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(12,13,16,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-weight:700;letter-spacing:.04em;font-size:15px}
+  .brand .mark{
+    width:26px;height:26px;border-radius:6px;
+    background:linear-gradient(135deg,#2bd4a8,#159e8a);
+    display:grid;place-items:center;color:#06231d;font-size:15px;flex:none;
+    box-shadow:0 0 0 1px rgba(255,255,255,.06) inset;
+  }
+  .brand b{color:var(--ink)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--ink-dim);text-decoration:none;font-size:14px;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+  .btn{
+    display:inline-block;font-family:var(--mono);font-size:13px;font-weight:500;
+    padding:9px 16px;border-radius:7px;text-decoration:none;border:1px solid transparent;
+    transition:transform .12s,background .15s,border-color .15s;
+  }
+  .btn-edge{background:var(--edge);color:#fff}
+  .btn-edge:hover{transform:translateY(-1px);background:var(--edge-soft)}
+  .btn-ghost{border-color:var(--line);color:var(--ink-dim)}
+  .btn-ghost:hover{border-color:var(--steel);color:var(--ink)}
+
+  /* ---- hero ---- */
+  .hero{padding:120px 0 90px;position:relative}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--edge);margin-bottom:24px}
+  .hero h1{
+    font-size:clamp(38px,6.4vw,72px);line-height:1.02;font-weight:700;
+    letter-spacing:-.02em;max-width:14ch;margin-bottom:26px;
+  }
+  .hero h1 .thin{color:var(--ink-faint);font-weight:400}
+  .hero p.lede{font-size:clamp(17px,2.1vw,20px);color:var(--ink-dim);max-width:54ch;margin-bottom:38px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-note{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:22px}
+
+  /* spec strip */
+  .specs{display:flex;gap:38px;flex-wrap:wrap;margin-top:64px;padding-top:34px;border-top:1px solid var(--line)}
+  .spec .n{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .spec .l{font-size:13px;color:var(--ink-faint);margin-top:4px}
+
+  /* ---- sections ---- */
+  section{padding:84px 0}
+  .sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px}
+  h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;max-width:20ch}
+  .sec-intro{color:var(--ink-dim);max-width:58ch;margin-top:18px;font-size:17px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:48px}
+  .card{background:var(--bg-raised);padding:30px 28px}
+  .card .ix{font-family:var(--mono);font-size:12px;color:var(--edge);letter-spacing:.1em}
+  .card h3{font-size:18px;font-weight:600;margin:14px 0 9px}
+  .card p{color:var(--ink-dim);font-size:15px}
+
+  /* flow */
+  .flow{margin-top:48px;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .step{background:var(--bg-raised);display:grid;grid-template-columns:64px 1fr;align-items:center;gap:20px;padding:22px 28px}
+  .step .num{font-family:var(--mono);font-weight:700;font-size:22px;color:var(--ink-faint)}
+  .step h4{font-size:16px;font-weight:600}
+  .step p{color:var(--ink-dim);font-size:14px;margin-top:3px}
+
+  /* privacy callout */
+  .callout{margin-top:64px;border:1px solid var(--line);border-radius:12px;background:var(--bg-raised);padding:34px 30px}
+  .callout h3{font-size:19px;font-weight:600;margin-bottom:12px}
+  .callout p{color:var(--ink-dim);font-size:15px;max-width:70ch}
+  .callout a{color:var(--edge-soft)}
+
+  /* ---- footer ---- */
+  footer{border-top:1px solid var(--line);padding:48px 0 60px;margin-top:40px}
+  .foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .foot .brand{margin-bottom:14px}
+  .foot p{color:var(--ink-faint);font-size:13px;max-width:42ch}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap}
+  .foot-links a{color:var(--ink-dim);text-decoration:none;font-size:14px}
+  .foot-links a:hover{color:var(--ink)}
+  .copy{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--edge-soft);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="mark">🪓</span> SITE<b>BUTCHER</b></div>
+    <nav class="nav-links">
+      <a href="#what">What it does</a>
+      <a href="#how">How it works</a>
+      <a href="#data">Data &amp; privacy</a>
+      <a href="mailto:support@sitebutcher.com" class="btn btn-ghost">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Desktop tool · Build &amp; manage at scale</div>
+      <h1>Carve sites fast.<br><span class="thin">Manage them from one board.</span></h1>
+      <p class="lede">SiteButcher is a desktop application that automates building and publishing websites in bulk, then keeps them organized through a single dashboard — with native Google Search Console integration for verification, sitemaps and indexing.</p>
+      <div class="hero-cta">
+        <a href="mailto:support@sitebutcher.com" class="btn btn-edge">Get in touch</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-note">// runs locally on your machine · your data stays on your device</div>
+
+      <div class="specs">
+        <div class="spec"><div class="n">1‑click</div><div class="l">site generation &amp; deploy</div></div>
+        <div class="spec"><div class="n">Multi‑lang</div><div class="l">localized pages, RTL support</div></div>
+        <div class="spec"><div class="n">GSC</div><div class="l">verify · sitemap · index</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="cut"></div></div>
+
+  <section id="what">
+    <div class="wrap">
+      <div class="sec-label">// what it does</div>
+      <h2>One workflow, from blank domain to indexed site.</h2>
+      <p class="sec-intro">SiteButcher takes the repetitive work out of standing up and maintaining websites. Everything happens from a single desktop dashboard.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="ix">01</div>
+          <h3>Automated site building</h3>
+          <p>Generate complete, structured websites — copy, layout, images and pages — from a brief, then publish them to your own servers.</p>
+        </div>
+        <div class="card">
+          <div class="ix">02</div>
+          <h3>Bulk management</h3>
+          <p>Create and oversee many sites at once from one board. Shared settings, per‑site overrides, batch operations.</p>
+        </div>
+        <div class="card">
+          <div class="ix">03</div>
+          <h3>Search Console integration</h3>
+          <p>Connect your Google account to verify ownership, submit sitemaps, request indexing and review traffic — without leaving the panel.</p>
+        </div>
+        <div class="card">
+          <div class="ix">04</div>
+          <h3>Multi‑language pages</h3>
+          <p>Produce localized versions of a site, including right‑to‑left languages, with a clear primary‑language structure.</p>
+        </div>
+        <div class="card">
+          <div class="ix">05</div>
+          <h3>Deploy to your servers</h3>
+          <p>Publish to infrastructure you control over SSH, with automatic web‑server configuration and HTTPS.</p>
+        </div>
+        <div class="card">
+          <div class="ix">06</div>
+          <h3>Local &amp; private</h3>
+          <p>SiteButcher runs on your own computer. Your content, keys and credentials stay on your device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="cut"></div></div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-label">// how it works</div>
+      <h2>Four steps, fully on your machine.</h2>
+      <div class="flow">
+        <div class="step"><div class="num">1</div><div><h4>Configure</h4><p>Pick a domain, language set, style and settings inside the desktop dashboard.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>Generate</h4><p>SiteButcher builds the pages, copy and assets for the site automatically.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>Deploy</h4><p>The site is published to your own server, configured and served over HTTPS.</p></div></div>
+        <div class="step"><div class="num">4</div><div><h4>Connect to Search Console</h4><p>Ownership is verified and a sitemap submitted through your linked Google account, so the site is ready for indexing.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="cut"></div></div>
+
+  <section id="data">
+    <div class="wrap">
+      <div class="sec-label">// data &amp; privacy</div>
+      <h2>What SiteButcher accesses in your Google account.</h2>
+      <p class="sec-intro">SiteButcher uses Google APIs only to perform the actions you ask for inside the app. Access is limited to Search Console and site verification.</p>
+
+      <div class="callout">
+        <h3>Google account access</h3>
+        <p>When you connect a Google account, SiteButcher requests permission to: add and verify site ownership in Google Search Console; submit sitemaps and request URL indexing; read Search Console performance data (impressions, clicks, positions) to display in the dashboard; manage your sites' Search Console settings; and read your account email address to identify the connected account. This data is used only to operate features inside the app. It is never sold and never shared with third parties. SiteButcher's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. Full details are in our <a href="/privacy.html">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand"><span class="mark">🪓</span> SITE<b>BUTCHER</b></div>
+        <p>A desktop tool for building and managing websites at scale, with Google Search Console integration.</p>
+      </div>
+      <div class="foot-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="mailto:support@sitebutcher.com">support@sitebutcher.com</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 SiteButcher · All rights reserved · support@sitebutcher.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
