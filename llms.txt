@@ -1,0 +1,36 @@
+# SiteButcher
+
+> SiteButcher is a desktop application for mass-producing, deploying and managing websites at scale from a single dashboard. It runs locally on the user's own machine — sites, keywords, API keys and credentials never leave the user's computer.
+
+## What it does
+
+- **Bulk website generation**: full pipeline from keyword to live site — semantic core, AI-written content, AI-generated images, HTML assembly and deployment.
+- **Multi-site management**: create and oversee hundreds of sites from one desktop board, with shared settings and per-site overrides.
+- **Visual variety**: 40+ visual styles so sites in a network look distinct.
+- **Any language with RTL**: localized output in any language the user adds, including full right-to-left support.
+- **Drafts & preview**: preview sites privately, re-render layouts or regenerate images before attaching a domain.
+- **Multi-account deployment**: connect many Google, Cloudflare and registrar accounts; distribute sites across them.
+- **Domain operations**: check availability, generate names, view pricing and bulk-register domains, then manage DNS.
+- **Your own servers**: deploy to infrastructure you own over SSH with automatic web-server config and HTTPS.
+- **Google Search Console integration**: verify ownership, submit sitemaps, request indexing and review performance across many accounts.
+- **Live monitoring**: uptime, SSL and HTTP checks for every published site.
+
+## Privacy model
+
+- Local-first by design. SiteButcher runs on the user's own computer.
+- There is no central server storing user projects, keywords or credentials.
+- Generated sites, drafts, API keys and account tokens are stored only on the user's machine.
+- Sites deploy directly from the user's computer to servers the user owns.
+
+## Key facts
+
+- Platform: Windows desktop application.
+- Pricing: available by request (contact for access).
+- Contact: support@sitebutcher.com
+- Status: actively developed.
+
+## Links
+
+- Home: https://sitebutcher.com/
+- Privacy Policy: https://sitebutcher.com/privacy.html
+- Terms of Service: https://sitebutcher.com/terms.html

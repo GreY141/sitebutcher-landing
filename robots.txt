@@ -1,0 +1,15 @@
+# robots.txt for sitebutcher.com
+User-agent: *
+Allow: /
+
+# AI / LLM crawlers — explicitly welcome (for AI search visibility)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://sitebutcher.com/sitemap.xml
